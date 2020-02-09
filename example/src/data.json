@@ -2,9 +2,12 @@
         {
             "subscriptionInfo":"Ashik Nesin",
             "customerInfo":"docmosis-cloud---entry",
+            "customerEmail":"mail@ashiknesin.com",
+            "customerWebsite":"https://nesin.io",
             "nextRenewal":"17 Feb 2020",
             "mrr":"$50.00 USD",
-            "createdOn":"22 Jan 2020"
+            "createdOn":"22 Jan 2020",
+            "isActive":true
     
         }
 ]

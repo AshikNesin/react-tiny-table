@@ -6,25 +6,57 @@ export default class App extends Component {
     render() {
         const tableColumns = [
             {
-                columnHeader: 'Subscription Info',
+                heading: 'Subscription Info',
                 path: 'subscriptionInfo',
                 sticky: true
             },
             {
-                columnHeader: 'Customer Info',
+                heading: 'Customer Info',
                 path: 'customerInfo'
             },
             {
-                columnHeader: 'Next Renewal',
+                heading: 'Customer Info',
+                path: 'customerInfo'
+            },
+            {
+                heading: 'Customer Info',
+                path: 'customerInfo'
+            },
+            {
+                heading: 'Customer Info',
+                path: 'customerInfo'
+            },
+            {
+                heading: 'Customer Info',
+                path: 'customerInfo'
+            },
+            {
+                heading: 'Next Renewal',
                 path: 'nextRenewal'
             },
             {
-                columnHeader: 'MRR',
+                heading: 'MRR',
                 path: 'mrr'
             },
             {
-                columnHeader: 'Created On ',
+                heading: 'Created On ',
                 path: 'createdOn'
+            },
+            {
+                heading: 'Customer Info',
+                path: 'customerInfo'
+            },
+            {
+                heading: 'Customer Info',
+                path: 'customerInfo'
+            },
+            {
+                heading: 'Customer Info',
+                path: 'customerInfo'
+            },
+            {
+                heading: 'Customer Info',
+                path: 'customerInfo'
             }
         ];
         return (
