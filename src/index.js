@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+import css from '@emotion/css'
 
 const DatatableWrapper = styled.div`
   max-width: 100vw;
@@ -9,7 +10,18 @@ const DatatableWrapper = styled.div`
 
 const ScrollContainer = styled.div`
   overflow-x: visible;
+  overflow-y: visible;
 `
+const fixedHeaderStyle = () => {
+  return css`
+  thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+  `
+}
 
 const StyledTable = styled.table`
   width: 100%;
@@ -26,12 +38,6 @@ const StyledTable = styled.table`
     text-align: left;
     text-shadow: 1px 1px 1px #fff;
     white-space: nowrap;
-
-    /* Make the header sticky.  */
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    overflow: hidden;
   }
 
   tbody td {
@@ -46,15 +52,9 @@ const StyledTable = styled.table`
     padding: 4px 10px;
   }
 
-  thead th {
-    /* Make the header sticky.  */
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    overflow: hidden;
-  }
 
-  th:first-child {
+
+  th:nth-child(1) {
     background-repeat: repeat-x;
     background-position: 100%;
     position: -webkit-sticky;
@@ -63,7 +63,7 @@ const StyledTable = styled.table`
     z-index: 1;
   }
 
-  td:first-child {
+  td:nth-child(1) {
     background: #fff;
     background-repeat: repeat-y;
     background-position: 100%;
@@ -73,9 +73,10 @@ const StyledTable = styled.table`
     z-index: 1;
   }
 
-  th:first-child {
+  th:nth-child(1) {
     z-index: 2 !important;
   }
+  ${fixedHeaderStyle};
 `
 
 export default class ExampleComponent extends Component {
