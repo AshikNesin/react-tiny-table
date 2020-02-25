@@ -24,10 +24,10 @@ const fixedHeaderStyle = props => {
 }
 
 const fixedColumnsStyle = ({fixedColumns}) => {
+  console.log(`calling fixedColumnsStyle()`)
   const leftColumns = fixedColumns.filter(item => item.fixed === 'left')
   const rightColumns = fixedColumns.filter(item => item.fixed === 'right')
-  const getStyleForFixedColumn = ({column, positionLeft = 0}) => {
-    console.log(column)
+  const getStyleForFixedColumn = ({column, positioning = 0}) => {
     if (!column) {
       return ''
     }
@@ -37,7 +37,7 @@ const fixedColumnsStyle = ({fixedColumns}) => {
       background-position: 100%;
       position: -webkit-sticky;
       position: sticky;
-      left: ${positionLeft};
+      ${column.fixed}: ${positioning}px;
       z-index: 1;
     }
 
@@ -47,7 +47,7 @@ const fixedColumnsStyle = ({fixedColumns}) => {
       background-position: 100%;
       position: -webkit-sticky;
       position: sticky;
-      left: ${positionLeft};
+      ${column.fixed}: ${positioning}px;
       z-index: 1;
     }
 
@@ -57,9 +57,25 @@ const fixedColumnsStyle = ({fixedColumns}) => {
     `
   }
 
-  console.log({leftColumns, rightColumns})
+  // console.log({leftColumns, rightColumns})
 
-  let style = `${getStyleForFixedColumn({column: leftColumns[0]})}`
+  let style = ``
+
+  if (leftColumns.length) {
+    let leftPositioning = 0
+    leftColumns.map(column => {
+      style = style + getStyleForFixedColumn({column, positioning: leftPositioning})
+      leftPositioning = leftPositioning + column.width
+    })
+  }
+
+  if (rightColumns.length) {
+    let rightPositioning = 0
+    rightColumns.reverse().map(column => {
+      style = style + getStyleForFixedColumn({column, positioning: rightPositioning})
+      rightPositioning = rightPositioning + column.width
+    })
+  }
 
   return css`${style}`
 }
@@ -135,6 +151,8 @@ export default class TinyTable extends Component {
     }
   }
   componentDidMount = () => {
+    console.log(`calling componentDidMount()`)
+
     const fixedColumns = []
     this.sortedColumns.map(({dataIndex, fixed}, columnIndex) => {
       if (fixed && this.tableHeaderRefs[dataIndex] && this.tableHeaderRefs[dataIndex].current) {
@@ -165,6 +183,8 @@ export default class TinyTable extends Component {
   };
 
   render() {
+    console.log(`calling render()`)
+
     const theadMarkup = (
       <tr key='heading'>{this.sortedColumns.map(this.renderHeadingRow)}</tr>
     )

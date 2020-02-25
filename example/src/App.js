@@ -25,7 +25,8 @@ export default class App extends Component {
             {
                 title: 'Customer Website',
                 dataIndex: 'customerWebsite',
-                key: 'customerWebsite'
+                key: 'customerWebsite',
+                fixed:'right'
             },
             {
                 title: 'Next Renewal',
