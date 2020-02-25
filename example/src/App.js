@@ -45,6 +45,46 @@ export default class App extends Component {
                 dataIndex: 'customField',
                 key: 'customField'
             },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
+            {
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
+            },
 
 
         ];

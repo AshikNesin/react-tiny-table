@@ -43,8 +43,7 @@ const StyledTable = styled.table`
 
   th,
   td {
-    padding: 0.25rem;
-    width: 100%;
+    padding: 4px 10px;
   }
 `
 
