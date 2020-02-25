@@ -13,7 +13,6 @@ const ScrollContainer = styled.div`
   overflow-y: visible;
 `
 const fixedHeaderStyle = props => {
-  console.log({props})
   return css`
   thead th {
     position: sticky;
@@ -22,6 +21,47 @@ const fixedHeaderStyle = props => {
     overflow: hidden;
   }
   `
+}
+
+const fixedColumnsStyle = ({fixedColumns}) => {
+  const leftColumns = fixedColumns.filter(item => item.fixed === 'left')
+  const rightColumns = fixedColumns.filter(item => item.fixed === 'right')
+  const getStyleForFixedColumn = ({column, positionLeft = 0}) => {
+    console.log(column)
+    if (!column) {
+      return ''
+    }
+
+    return `th:nth-child(${column.nthChildIndex}) {
+      background-repeat: repeat-x;
+      background-position: 100%;
+      position: -webkit-sticky;
+      position: sticky;
+      left: ${positionLeft};
+      z-index: 1;
+    }
+
+    td:nth-child(${column.nthChildIndex}) {
+      background: #fff;
+      background-repeat: repeat-y;
+      background-position: 100%;
+      position: -webkit-sticky;
+      position: sticky;
+      left: ${positionLeft};
+      z-index: 1;
+    }
+
+    th:nth-child(${column.nthChildIndex}) {
+      z-index: 2 !important;
+    }
+    `
+  }
+
+  console.log({leftColumns, rightColumns})
+
+  let style = `${getStyleForFixedColumn({column: leftColumns[0]})}`
+
+  return css`${style}`
 }
 
 const StyledTable = styled.table`
@@ -55,29 +95,9 @@ const StyledTable = styled.table`
 
 
 
-  th:nth-child(1) {
-    background-repeat: repeat-x;
-    background-position: 100%;
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0;
-    z-index: 1;
-  }
 
-  td:nth-child(1) {
-    background: #fff;
-    background-repeat: repeat-y;
-    background-position: 100%;
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0;
-    z-index: 1;
-  }
-
-  th:nth-child(1) {
-    z-index: 2 !important;
-  }
   ${fixedHeaderStyle};
+  ${fixedColumnsStyle};
 `
 
 const sortColumns = (columns) => {
@@ -100,9 +120,6 @@ const sortColumns = (columns) => {
   return sortedColumns
 }
 export default class TinyTable extends Component {
-  state = {
-    sortedColumns: null
-  };
   static propTypes = {
     columns: PropTypes.array.isRequired,
     dataSource: PropTypes.array.isRequired
@@ -112,10 +129,27 @@ export default class TinyTable extends Component {
     super(props)
     this.sortedColumns = sortColumns(props.columns)
     this.tableData = props.dataSource
+    this.tableHeaderRefs = {}
+    this.state = {
+      fixedColumns: []
+    }
+  }
+  componentDidMount = () => {
+    const fixedColumns = []
+    this.sortedColumns.map(({dataIndex, fixed}, columnIndex) => {
+      if (fixed && this.tableHeaderRefs[dataIndex] && this.tableHeaderRefs[dataIndex].current) {
+        const width = this.tableHeaderRefs[dataIndex].current.getBoundingClientRect().width
+        fixedColumns.push({dataIndex, fixed, nthChildIndex: columnIndex + 1, width: width})
+        this.setState({fixedColumns})
+      }
+    })
   }
 
-  renderHeadingRow = ({ title, key }) => {
-    return <th key={key}>{title}</th>
+  renderHeadingRow = ({ title, key, dataIndex, fixed }, cellIndex) => {
+    if (fixed === 'right' || fixed === 'left') {
+      this.tableHeaderRefs[dataIndex] = React.createRef()
+    }
+    return <th key={key || cellIndex} ref={this.tableHeaderRefs[dataIndex]}>{title}</th>
   };
 
   renderRow = (_row, rowIndex) => {
@@ -139,7 +173,7 @@ export default class TinyTable extends Component {
     return (
       <DatatableWrapper>
         <ScrollContainer>
-          <StyledTable fixedColumns={[1, 23]}>
+          <StyledTable fixedColumns={this.state.fixedColumns}>
             <thead>{theadMarkup}</thead>
             {tbodyMarkup}
             <tbody />
