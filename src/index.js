@@ -12,7 +12,8 @@ const ScrollContainer = styled.div`
   overflow-x: visible;
   overflow-y: visible;
 `
-const fixedHeaderStyle = () => {
+const fixedHeaderStyle = props => {
+  console.log({props})
   return css`
   thead th {
     position: sticky;
@@ -79,9 +80,28 @@ const StyledTable = styled.table`
   ${fixedHeaderStyle};
 `
 
-export default class ExampleComponent extends Component {
+const sortColumns = (columns) => {
+  const fixedLeftColumns = columns.filter(item => {
+    if (!item.fixed) {
+      return false
+    }
+    return item.fixed === 'left'
+  })
+
+  const fixedRightColumns = columns.filter(item => {
+    if (!item.fixed) {
+      return false
+    }
+    return item.fixed === 'right'
+  })
+
+  const nonFixedColumns = columns.filter(item => !item.fixed)
+  const sortedColumns = [...fixedLeftColumns, ...nonFixedColumns, ...fixedRightColumns]
+  return sortedColumns
+}
+export default class TinyTable extends Component {
   state = {
-    orderedColumns: null
+    sortedColumns: null
   };
   static propTypes = {
     columns: PropTypes.array.isRequired,
@@ -90,8 +110,7 @@ export default class ExampleComponent extends Component {
 
   constructor(props) {
     super(props)
-    // TODO: Order columns based on whether it's fixed or not. And whether it's left or right
-    this.orderedColumns = props.columns
+    this.sortedColumns = sortColumns(props.columns)
     this.tableData = props.dataSource
   }
 
@@ -102,7 +121,7 @@ export default class ExampleComponent extends Component {
   renderRow = (_row, rowIndex) => {
     return (
       <tr key={`row-${rowIndex}`}>
-        {this.orderedColumns.map((_cell, cellIndex) => {
+        {this.sortedColumns.map((_cell, cellIndex) => {
           return (
             <td key={`${rowIndex}-${cellIndex}`}>{_row[_cell.dataIndex]}</td>
           )
@@ -113,14 +132,14 @@ export default class ExampleComponent extends Component {
 
   render() {
     const theadMarkup = (
-      <tr key='heading'>{this.orderedColumns.map(this.renderHeadingRow)}</tr>
+      <tr key='heading'>{this.sortedColumns.map(this.renderHeadingRow)}</tr>
     )
     const tbodyMarkup = this.tableData.map(this.renderRow)
 
     return (
       <DatatableWrapper>
         <ScrollContainer>
-          <StyledTable>
+          <StyledTable fixedColumns={[1, 23]}>
             <thead>{theadMarkup}</thead>
             {tbodyMarkup}
             <tbody />

@@ -8,12 +8,14 @@ export default class App extends Component {
             {
                 title: 'Subscription Info',
                 dataIndex: 'subscriptionInfo',
-                key: 'subscriptionInfo'
+                key: 'subscriptionInfo',
+                fixed:'left'
             },
             {
                 title: 'Customer Info',
                 dataIndex: 'customerInfo',
-                key: 'customerInfo'
+                key: 'customerInfo',
+
             },
             {
                 title: 'Customer Email',
@@ -33,7 +35,9 @@ export default class App extends Component {
             {
                 title: 'MRR',
                 dataIndex: 'mrr',
-                key: 'mrr'
+                key: 'mrr',
+                fixed:'left'
+
             },
             {
                 title: 'Created On',
@@ -51,9 +55,10 @@ export default class App extends Component {
                 key: 'customField'
             },
             {
-                title: 'Custom Field',
+                title: 'Fixed Column',
                 dataIndex: 'customField',
-                key: 'customField'
+                key: 'customField',
+                fixed:'right'
             },
             {
                 title: 'Custom Field',
