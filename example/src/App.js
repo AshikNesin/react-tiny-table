@@ -8,7 +8,8 @@ export default class App extends Component {
             {
                 heading: 'Subscription Info',
                 path: 'subscriptionInfo',
-                sticky: true
+                sticky: true,
+                width: '150px'
             },
             {
                 heading: 'Customer Info',
