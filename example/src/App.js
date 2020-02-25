@@ -1,68 +1,56 @@
 import React, { Component } from 'react';
 
 import TinyTable from 'react-tiny-table';
-import tableData from './data.json';
+import data from './data.json';
 export default class App extends Component {
     render() {
-        const tableColumns = [
+        const columns = [
             {
-                heading: 'Subscription Info',
-                path: 'subscriptionInfo',
-                sticky: true,
-                width: '150px'
+                title: 'Subscription Info',
+                dataIndex: 'subscriptionInfo',
+                key: 'subscriptionInfo'
             },
             {
-                heading: 'Customer Info',
-                path: 'customerInfo'
+                title: 'Customer Info',
+                dataIndex: 'customerInfo',
+                key: 'customerInfo'
             },
             {
-                heading: 'Customer Info',
-                path: 'customerInfo'
+                title: 'Customer Email',
+                dataIndex: 'customerEmail',
+                key: 'customerEmail'
             },
             {
-                heading: 'Customer Info',
-                path: 'customerInfo'
+                title: 'Customer Website',
+                dataIndex: 'customerWebsite',
+                key: 'customerWebsite'
             },
             {
-                heading: 'Customer Info',
-                path: 'customerInfo'
+                title: 'Next Renewal',
+                dataIndex: 'nextRenewal',
+                key: 'nextRenewal'
             },
             {
-                heading: 'Customer Info',
-                path: 'customerInfo'
+                title: 'MRR',
+                dataIndex: 'mrr',
+                key: 'mrr'
             },
             {
-                heading: 'Next Renewal',
-                path: 'nextRenewal'
+                title: 'Created On',
+                dataIndex: 'createdOn',
+                key: 'createdOn'
             },
             {
-                heading: 'MRR',
-                path: 'mrr'
+                title: 'Custom Field',
+                dataIndex: 'customField',
+                key: 'customField'
             },
-            {
-                heading: 'Created On ',
-                path: 'createdOn'
-            },
-            {
-                heading: 'Customer Info',
-                path: 'customerInfo'
-            },
-            {
-                heading: 'Customer Info',
-                path: 'customerInfo'
-            },
-            {
-                heading: 'Customer Info',
-                path: 'customerInfo'
-            },
-            {
-                heading: 'Customer Info',
-                path: 'customerInfo'
-            }
+
+
         ];
         return (
             <div>
-                <TinyTable dataColumns={tableColumns} dataRows={tableData} />
+                <TinyTable columns={columns} dataSource={data} />
             </div>
         );
     }

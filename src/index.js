@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import Cell from './Cell'
 
 const DatatableWrapper = styled.div`
   max-width: 100vw;
@@ -12,7 +11,7 @@ const ScrollContainer = styled.div`
   overflow-x: auto;
 `
 
-const Table = styled.table`
+const StyledTable = styled.table`
   width: 100%;
   font-size: 14px;
   border-spacing: 0;
@@ -33,7 +32,6 @@ const Table = styled.table`
     top: 0;
     z-index: 1;
     overflow: hidden;
-
   }
 
   tbody td {
@@ -48,63 +46,59 @@ const Table = styled.table`
     padding: 0.25rem;
     width: 100%;
   }
-
 `
 
 export default class ExampleComponent extends Component {
-  // TODO: Add propTypes
+  state = {
+    orderedColumns: null
+  }
   static propTypes = {
-    dataColumns: PropTypes.array.isRequired,
-    dataRows: PropTypes.array.isRequired
+    columns: PropTypes.array.isRequired,
+    dataSource: PropTypes.array.isRequired
   };
 
-  renderHeadingRow = (_cell, cellIndex) => {
-    const { dataColumns } = this.props
+  constructor(props) {
+    super(props)
+    // TODO: Order columns based on whether it's fixed or not. And whether it's left or right
+    this.orderedColumns = props.columns
+    this.tableData = props.dataSource
+  }
 
-    return (
-      <Cell
-        key={`heading-${cellIndex}`}
-        content={dataColumns[cellIndex].heading}
-        header={true}
-        // width={_row['width']}
-      />
-    )
-  };
+  renderHeadingRow = ({title, key}) => {
+    return <th key={key}>{title}</th>
+  }
 
   renderRow = (_row, rowIndex) => {
-    const { dataColumns } = this.props
     return (
-      <tr>
-        {dataColumns.map(({ path, sticky }, index) => (
-          <Cell
-            key={`cell-${index}`}
-            content={_row[path]}
-            sticky={sticky || false}
-            width={_row['width']}
-          />
-        ))}
+      <tr key={`row-${rowIndex}`}>
+        {this.orderedColumns.map((_cell, cellIndex) => {
+          return (<td key={`${rowIndex}-${cellIndex}`}
+          >{_row[_cell.dataIndex]}</td>)
+        })}
       </tr>
+
     )
-  };
+  }
 
   render() {
-    const dataColumns = this.props.dataColumns
-    const dataRows = this.props.dataRows
-
-    const tableHeaders = (
-      <thead>
-        <tr>{dataColumns.map(this.renderHeadingRow)}</tr>
-      </thead>
+    const theadMarkup = (
+      <tr key='heading'>
+        {this.orderedColumns.map(this.renderHeadingRow)}
+      </tr>
     )
-    const tableBody = <tbody>{dataRows.map(this.renderRow)}</tbody>
+    const tbodyMarkup = this.tableData.map(this.renderRow)
 
     return (
       <DatatableWrapper>
         <ScrollContainer>
-          <Table>
-            {tableHeaders}
-            {tableBody}
-          </Table>
+          <StyledTable>
+            <thead>
+              {theadMarkup}
+            </thead>
+            {tbodyMarkup}
+            <tbody />
+          </StyledTable>
+
         </ScrollContainer>
       </DatatableWrapper>
     )
