@@ -89,7 +89,7 @@ export default class App extends Component {
 
         ];
         return (
-            <div>
+            <div style={{maxWidth:'80%', overflowX:'scroll', margin:'0 auto'}}>
                 <TinyTable columns={columns} dataSource={data} />
             </div>
         );

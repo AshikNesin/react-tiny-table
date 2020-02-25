@@ -8,7 +8,7 @@ const DatatableWrapper = styled.div`
 `
 
 const ScrollContainer = styled.div`
-  overflow-x: auto;
+  overflow-x: visible;
 `
 
 const StyledTable = styled.table`
@@ -45,12 +45,43 @@ const StyledTable = styled.table`
   td {
     padding: 4px 10px;
   }
+
+  thead th {
+    /* Make the header sticky.  */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  th:first-child {
+    background-repeat: repeat-x;
+    background-position: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  td:first-child {
+    background: #fff;
+    background-repeat: repeat-y;
+    background-position: 100%;
+    position: -webkit-sticky;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+  }
+
+  th:first-child {
+    z-index: 2 !important;
+  }
 `
 
 export default class ExampleComponent extends Component {
   state = {
     orderedColumns: null
-  }
+  };
   static propTypes = {
     columns: PropTypes.array.isRequired,
     dataSource: PropTypes.array.isRequired
@@ -63,27 +94,25 @@ export default class ExampleComponent extends Component {
     this.tableData = props.dataSource
   }
 
-  renderHeadingRow = ({title, key}) => {
+  renderHeadingRow = ({ title, key }) => {
     return <th key={key}>{title}</th>
-  }
+  };
 
   renderRow = (_row, rowIndex) => {
     return (
       <tr key={`row-${rowIndex}`}>
         {this.orderedColumns.map((_cell, cellIndex) => {
-          return (<td key={`${rowIndex}-${cellIndex}`}
-          >{_row[_cell.dataIndex]}</td>)
+          return (
+            <td key={`${rowIndex}-${cellIndex}`}>{_row[_cell.dataIndex]}</td>
+          )
         })}
       </tr>
-
     )
-  }
+  };
 
   render() {
     const theadMarkup = (
-      <tr key='heading'>
-        {this.orderedColumns.map(this.renderHeadingRow)}
-      </tr>
+      <tr key='heading'>{this.orderedColumns.map(this.renderHeadingRow)}</tr>
     )
     const tbodyMarkup = this.tableData.map(this.renderRow)
 
@@ -91,13 +120,10 @@ export default class ExampleComponent extends Component {
       <DatatableWrapper>
         <ScrollContainer>
           <StyledTable>
-            <thead>
-              {theadMarkup}
-            </thead>
+            <thead>{theadMarkup}</thead>
             {tbodyMarkup}
             <tbody />
           </StyledTable>
-
         </ScrollContainer>
       </DatatableWrapper>
     )
