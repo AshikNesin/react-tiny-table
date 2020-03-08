@@ -9,13 +9,12 @@ export default class App extends Component {
                 title: 'Subscription Info',
                 dataIndex: 'subscriptionInfo',
                 key: 'subscriptionInfo',
-                fixed:'left'
+                fixed: 'left'
             },
             {
                 title: 'Customer Info',
                 dataIndex: 'customerInfo',
-                key: 'customerInfo',
-
+                key: 'customerInfo'
             },
             {
                 title: 'Customer Email',
@@ -26,7 +25,7 @@ export default class App extends Component {
                 title: 'Customer Website',
                 dataIndex: 'customerWebsite',
                 key: 'customerWebsite',
-                fixed:'right'
+                fixed: 'right'
             },
             {
                 title: 'Next Renewal',
@@ -37,8 +36,7 @@ export default class App extends Component {
                 title: 'MRR',
                 dataIndex: 'mrr',
                 key: 'mrr',
-                fixed:'left'
-
+                fixed: 'left'
             },
             {
                 title: 'Created On',
@@ -59,7 +57,7 @@ export default class App extends Component {
                 title: 'Fixed Column',
                 dataIndex: 'customField',
                 key: 'customField',
-                fixed:'right'
+                fixed: 'right'
             },
             {
                 title: 'Custom Field',
@@ -90,13 +88,14 @@ export default class App extends Component {
                 title: 'Custom Field',
                 dataIndex: 'customField',
                 key: 'customField'
-            },
-
-
+            }
         ];
         return (
-            <div style={{maxWidth:'80%'}}>
-                <TinyTable columns={columns} dataSource={data} />
+            <div style={{ backgroundColor: 'skyblue', minHeight: '80vh' }}>
+                <div style={{ maxWidth: '50%', backgroundColor: 'red' }}>
+                    <h2>Demo Table</h2>
+                    <TinyTable columns={columns} dataSource={data} />
+                </div>
             </div>
         );
     }
