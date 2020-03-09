@@ -7,6 +7,8 @@ const DatatableWrapper = styled.div`
     max-width: 100vw;
     position: relative;
     overflow: scroll;
+    /* overflow-x: visible; */
+    /* overflow-y: scroll; */
 `
 
 const ScrollContainer = styled.div`
@@ -229,8 +231,7 @@ export default class TinyTable extends Component {
           <ScrollContainer>
             <StyledTable fixedColumns={this.state.fixedColumns}>
               <thead>{theadMarkup}</thead>
-              {tbodyMarkup}
-              <tbody />
+              <tbody>{tbodyMarkup}</tbody>
             </StyledTable>
           </ScrollContainer>
         </DatatableWrapper>
