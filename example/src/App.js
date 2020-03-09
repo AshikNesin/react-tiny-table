@@ -35,8 +35,7 @@ export default class App extends Component {
             {
                 title: 'MRR',
                 dataIndex: 'mrr',
-                key: 'mrr',
-                fixed: 'left'
+                key: 'mrr'
             },
             {
                 title: 'Created On',
@@ -77,7 +76,8 @@ export default class App extends Component {
             {
                 title: 'CB Field',
                 dataIndex: 'customField',
-                key: 'customField'
+                key: 'customField',
+                fixed: 'left'
             },
             {
                 title: 'Custom Field',
@@ -90,7 +90,7 @@ export default class App extends Component {
                 key: 'customField'
             }
         ];
-        return <TinyTable columns={columns} dataSource={data} />;
+        // return <TinyTable columns={columns} dataSource={data} />;
         return (
             <div>
                 <div className="container-fluid">
@@ -207,12 +207,7 @@ export default class App extends Component {
                                 </div>
                             </div>
 
-                            <div>
-                                <TinyTable
-                                    columns={columns}
-                                    dataSource={data}
-                                />
-                            </div>
+                            <TinyTable columns={columns} dataSource={data} />
                         </main>
                     </div>
                 </div>

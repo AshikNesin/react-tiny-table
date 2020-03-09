@@ -2,6 +2,8 @@
 /* https://getbootstrap.com/docs/4.4/examples/dashboard/dashboard.css */
 body {
   font-size: .875rem;
+  /* overflow-x: hidden; */
+
 }
 
 .feather {

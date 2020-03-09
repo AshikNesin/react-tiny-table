@@ -4,14 +4,12 @@ import styled from '@emotion/styled'
 import css from '@emotion/css'
 
 const DatatableWrapper = styled.div`
-    max-width: 100vw;
-    position: relative;
-    overflow: scroll;
+    display: block;
+    width: 100%;
 `
 
 const ScrollContainer = styled.div`
-    overflow-x: visible;
-    overflow-y: visible;
+    overflow-x: auto;
 `
 const fixedHeaderStyle = props => {
   return css`
@@ -57,8 +55,6 @@ const fixedColumnsStyle = ({ fixedColumns }) => {
     }
     `
     };
-
-  // console.log({leftColumns, rightColumns})
 
   let style = ``
 
@@ -229,8 +225,8 @@ export default class TinyTable extends Component {
           <ScrollContainer>
             <StyledTable fixedColumns={this.state.fixedColumns}>
               <thead>{theadMarkup}</thead>
-              {/* <tbody>{tbodyMarkup}</tbody> */}
-              {tbodyMarkup}
+              <tbody>{tbodyMarkup}</tbody>
+              {/* {tbodyMarkup} */}
             </StyledTable>
           </ScrollContainer>
         </DatatableWrapper>
