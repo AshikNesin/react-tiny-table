@@ -1,7 +1,7 @@
-import ExampleComponent from './'
+import TinyTable from './'
 
-describe('ExampleComponent', () => {
+describe('TinyTable', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
+    expect(TinyTable).toBeTruthy()
+    })
 })

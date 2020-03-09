@@ -115,6 +115,7 @@ const StyledTable = styled.table`
         color: #333;
         text-shadow: 1px 1px 1px #fff;
         white-space: nowrap;
+        word-break: break-all;
     }
 
     th,
