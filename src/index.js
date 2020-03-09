@@ -7,8 +7,6 @@ const DatatableWrapper = styled.div`
     max-width: 100vw;
     position: relative;
     overflow: scroll;
-    /* overflow-x: visible; */
-    /* overflow-y: scroll; */
 `
 
 const ScrollContainer = styled.div`
@@ -21,7 +19,7 @@ const fixedHeaderStyle = props => {
             position: sticky;
             top: 0;
             z-index: 1;
-            overflow: hidden;
+            overflow: visible;
         }
     `
 };
@@ -231,7 +229,8 @@ export default class TinyTable extends Component {
           <ScrollContainer>
             <StyledTable fixedColumns={this.state.fixedColumns}>
               <thead>{theadMarkup}</thead>
-              <tbody>{tbodyMarkup}</tbody>
+              {/* <tbody>{tbodyMarkup}</tbody> */}
+              {tbodyMarkup}
             </StyledTable>
           </ScrollContainer>
         </DatatableWrapper>

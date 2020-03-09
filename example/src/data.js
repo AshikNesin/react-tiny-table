@@ -11,4 +11,4 @@ const dataset = [
     }
 ];
 
-module.exports = Array.from({ length: 100 }).map(x => dataset[0]);
+module.exports = Array.from({ length: 50 }).map(x => dataset[0]);

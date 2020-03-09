@@ -29,6 +29,7 @@ export default class App extends Component {
             {
                 title: 'Next Renewal',
                 dataIndex: 'nextRenewal',
+                fixed: 'right',
                 key: 'nextRenewal'
             },
             {
@@ -89,6 +90,7 @@ export default class App extends Component {
                 key: 'customField'
             }
         ];
+        return <TinyTable columns={columns} dataSource={data} />;
         return (
             <div>
                 <div className="container-fluid">
@@ -205,7 +207,7 @@ export default class App extends Component {
                                 </div>
                             </div>
 
-                            <div className="table-responsive">
+                            <div>
                                 <TinyTable
                                     columns={columns}
                                     dataSource={data}
