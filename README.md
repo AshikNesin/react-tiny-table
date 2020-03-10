@@ -39,8 +39,7 @@ import TinyTable from '@ashiknesin/react-tiny-table'
                 title: 'Created On',
                 dataIndex: 'createdOn',
                 key: 'createdOn',
-                fixed: 'right'
-                // To make it fixed (right)
+                fixed: 'right'  // To make it fixed (right)
             },
             {
                 title: 'Custom Field Right',
@@ -72,6 +71,16 @@ class TinyTableDemo extends Component {
   }
 }
 ```
+
+## Demo
+[Live Demo](https://ashiknesin.github.io/react-tiny-table/)
+
+## Fixed Headers & Columns
+- The header is fixed by default
+- To a column fixed either left or right. You need to pass `fixed:'right' or fixed: 'left'` property in your columns data set. Please refer to the above example for your reference
+
+## Table Styling
+By default table comes with minimal styling which you can override if you want.
 
 ## License
 
