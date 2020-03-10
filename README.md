@@ -15,7 +15,8 @@ npm install --save react-tiny-table
 ```jsx
 import React, { Component } from 'react'
 
-import TinyTable from 'react-tiny-table'
+import TinyTable from '@ashiknesin/react-tiny-table'
+
 
  const columns = [
             {
