@@ -90,7 +90,6 @@ export default class App extends Component {
                 key: 'customField'
             }
         ];
-        // return <TinyTable columns={columns} dataSource={data} />;
         return (
             <div>
                 <div className="container-fluid">
