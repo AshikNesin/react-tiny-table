@@ -5,6 +5,7 @@ import { sortColumns } from './utils'
 import { TableScrollContainer, StyledTable } from './tableStyles'
 
 import Item from './components/Item'
+import RenderIfVisible from './components/RenderIfVisible'
 export default class TinyTable extends Component {
     static propTypes = {
       columns: PropTypes.array.isRequired,
@@ -55,11 +56,19 @@ export default class TinyTable extends Component {
 
     renderRow = (_row, rowIndex) => {
       return (
-        <Item
-          columns={this.sortedColumns}
-          _row={_row}
-          rowIndex={rowIndex}
-        />
+        <RenderIfVisible
+          wrapper='tr'
+          options={{
+            root: document.querySelector('#scrollArea'),
+            rootMargin: '0px' // if there is any margin associated with it,
+          }}
+        >
+          <Item
+            columns={this.sortedColumns}
+            _row={_row}
+            rowIndex={rowIndex}
+          />
+        </RenderIfVisible>
       )
     };
 
