@@ -4,6 +4,8 @@ import { sortColumns } from './utils'
 
 import { TableScrollContainer, StyledTable } from './tableStyles'
 
+import VirtualScroll from './VirtualScroll'
+import Item from './Item'
 export default class TinyTable extends Component {
     static propTypes = {
       columns: PropTypes.array.isRequired,
@@ -63,6 +65,11 @@ export default class TinyTable extends Component {
             )
                 })}
         </tr>
+        <Item
+          columns={this.sortedColumns}
+          _row={_row}
+          rowIndex={rowIndex}
+        />
       )
     };
 
@@ -79,7 +86,6 @@ export default class TinyTable extends Component {
           <StyledTable fixedColumns={this.state.fixedColumns}>
             <thead>{theadMarkup}</thead>
             <tbody>{tbodyMarkup}</tbody>
-            {/* {tbodyMarkup} */}
           </StyledTable>
         </TableScrollContainer>
       )
