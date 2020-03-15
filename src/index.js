@@ -4,7 +4,7 @@ import { sortColumns } from './utils'
 
 import { TableScrollContainer, StyledTable } from './tableStyles'
 
-import Item from './Item'
+import Item from './components/Item'
 export default class TinyTable extends Component {
     static propTypes = {
       columns: PropTypes.array.isRequired,
@@ -72,7 +72,7 @@ export default class TinyTable extends Component {
         const tbodyMarkup = this.tableData.map(this.renderRow)
 
         return (
-        <TableScrollContainer>
+        <TableScrollContainer id='scrollArea'>
           <StyledTable fixedColumns={this.state.fixedColumns}>
             <thead>{theadMarkup}</thead>
             <tbody>{tbodyMarkup}</tbody>
