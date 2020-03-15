@@ -6,9 +6,9 @@ const Item = memo(({ rowIndex, columns, _row }) => (
     wrapper='tr'
     key={`row-${rowIndex}`}
     options={{
-      root: null, // To listen to window scroll
-      rootMargin: '100px 0px' // if there is any margin associated with it
-      // threshold: 0.5
+      root: document.querySelector('#scrollArea'),
+      rootMargin: '100px 100px'
+      // threshold: 0.2
     }}
   >
     {columns.map((_cell, cellIndex) => {

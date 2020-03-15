@@ -10,7 +10,7 @@ export const TableScrollContainer = styled.div`
     height: 100vh;
     /* Hide scrollbar */
     &::-webkit-scrollbar {
-        /* display: none; */
+        display: none;
     }
 `
 
