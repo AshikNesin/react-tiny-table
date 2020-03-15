@@ -62,8 +62,5 @@
   "dependencies": {
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27"
-  },
-  "browserslist": [
-    "last 1 Chrome versions"
-]
+  }
 }
