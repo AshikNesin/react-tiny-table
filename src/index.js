@@ -4,7 +4,6 @@ import { sortColumns } from './utils'
 
 import { TableScrollContainer, StyledTable } from './tableStyles'
 
-import VirtualScroll from './VirtualScroll'
 import Item from './Item'
 export default class TinyTable extends Component {
     static propTypes = {
@@ -56,15 +55,6 @@ export default class TinyTable extends Component {
 
     renderRow = (_row, rowIndex) => {
       return (
-        <tr key={`row-${rowIndex}`}>
-          {this.sortedColumns.map((_cell, cellIndex) => {
-            return (
-              <td key={`${rowIndex}-${cellIndex}`}>
-                {_row[_cell.dataIndex]}
-              </td>
-            )
-                })}
-        </tr>
         <Item
           columns={this.sortedColumns}
           _row={_row}
