@@ -7,7 +7,11 @@ export const TableScrollContainer = styled.div`
     z-index: 1;
     margin: auto;
     overflow: auto;
-    height: 800px;
+    height: 100vh;
+    /* Hide scrollbar */
+    &::-webkit-scrollbar {
+        display: none;
+    }
 `
 
 export const getFixedHeaderStyle = props => {
@@ -21,8 +25,7 @@ export const getFixedHeaderStyle = props => {
     `
 };
 export const getFixedColumnsStyle = ({ fixedColumns }) => {
-  console.log(`calling fixedColumnsStyle()`)
-    const leftColumns = fixedColumns.filter(item => item.fixed === 'left')
+  const leftColumns = fixedColumns.filter(item => item.fixed === 'left')
     const rightColumns = fixedColumns.filter(item => item.fixed === 'right')
     const getStyleForFixedColumn = ({ column, positioning = 0 }) => {
     if (!column) {
