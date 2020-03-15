@@ -7,11 +7,7 @@ export const TableScrollContainer = styled.div`
     z-index: 1;
     margin: auto;
     overflow: auto;
-    height: 100vh;
-    /* Hide scrollbar */
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    height: 800px;
 `
 
 export const getFixedHeaderStyle = props => {
